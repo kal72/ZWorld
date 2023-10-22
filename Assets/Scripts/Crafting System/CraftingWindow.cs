@@ -7,14 +7,14 @@ public class CraftingWindow : MonoBehaviour
 	[Header("References")]
 	[SerializeField] CraftingRecipeUI recipeUIPrefab;
 	[SerializeField] RectTransform recipeUIParent;
+	[SerializeField] CraftingRecipeWindow craftingRecipeWindow;
 	[SerializeField] List<CraftingRecipeUI> craftingRecipeUIs;
 
 	[Header("Public Variables")]
-	public ItemContainer ItemContainer;
 	public List<CraftingRecipe> CraftingRecipes;
 
-	public event Action<BaseItemSlot> OnPointerEnterEvent;
-	public event Action<BaseItemSlot> OnPointerExitEvent;
+	// public event Action<BaseItemSlot> OnPointerEnterEvent;
+	// public event Action<BaseItemSlot> OnPointerExitEvent;
 
 	private void OnValidate()
 	{
@@ -25,11 +25,11 @@ public class CraftingWindow : MonoBehaviour
 	{
 		Init();
 
-		foreach (CraftingRecipeUI craftingRecipeUI in craftingRecipeUIs)
-		{
-			craftingRecipeUI.OnPointerEnterEvent += slot => OnPointerEnterEvent(slot);
-			craftingRecipeUI.OnPointerExitEvent += slot => OnPointerExitEvent(slot);
-		}
+		// foreach (CraftingRecipeUI craftingRecipeUI in craftingRecipeUIs)
+		// {
+		// 	craftingRecipeUI.OnPointerEnterEvent += slot => OnPointerEnterEvent(slot);
+		// 	craftingRecipeUI.OnPointerExitEvent += slot => OnPointerExitEvent(slot);
+		// }
 	}
 
 	private void Init()
@@ -51,8 +51,9 @@ public class CraftingWindow : MonoBehaviour
 				craftingRecipeUIs[i] = Instantiate(recipeUIPrefab, recipeUIParent, false);
 			}
 
-			craftingRecipeUIs[i].ItemContainer = ItemContainer;
+			craftingRecipeUIs[i].ItemContainer = InventoryManager.Instance;
 			craftingRecipeUIs[i].CraftingRecipe = CraftingRecipes[i];
+			craftingRecipeUIs[i].Addlistener(craftingRecipeWindow);
 		}
 
 		for (int i = CraftingRecipes.Count; i < craftingRecipeUIs.Count; i++)

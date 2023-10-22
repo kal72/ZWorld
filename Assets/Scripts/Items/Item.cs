@@ -1,29 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public abstract class Item : ScriptableObject
 {
-    public int Id;
+    [SerializeField] string id;
+	public string ID { get { return id; } }
     public string Name;
     public string Description;
     public Sprite Icon;
     public bool IsStackable;
-    public ItemType itemType;
+    
     public ItemGroup itemGroup;
-
-    public enum ItemType
-    {
-        Potion,
-        Weapon,
-        Shield,
-        Helmet,
-        Armor,
-        Accesories,
-        Core,
-        Material,
-        Junk
-    }
+    [Range(1,999)]
+	public int MaximumStacks = 1;
 
     public enum ItemGroup
     {
@@ -33,6 +25,23 @@ public abstract class Item : ScriptableObject
         Other
     }
 
-    public abstract void Equip(Character c);
-    public abstract void Unequip(Character c);
+    protected static readonly StringBuilder sb = new StringBuilder();
+
+	#if UNITY_EDITOR
+	protected virtual void OnValidate()
+	{
+		string path = AssetDatabase.GetAssetPath(this);
+		id = AssetDatabase.AssetPathToGUID(path);
+	}
+	#endif
+
+    public abstract Item GetCopy();
+
+	public abstract void Destroy();
+
+	public abstract string GetDescription();
+
+    public virtual string GetItemType(){
+        return "";
+    }
 }

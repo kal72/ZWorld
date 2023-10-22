@@ -23,15 +23,15 @@ public class ItemDetailPanel : MonoBehaviour
         itemIcon.sprite = _item.Icon;
         itemName.text = _item.Name;
         itemTier.text = "Legendary";
-        itemType.text = _item.itemType.ToString();
+        itemType.text = _item.GetItemType();
         itemDesc.text = _item.Description;
 
         switch (_item.itemGroup)
         {
             case Item.ItemGroup.Equip:
-                assignStatBonus((EquipmentItem)_item);
+                assignStatBonus((EquippableItem)_item);
                 buttonEquip.gameObject.SetActive(true);
-                buttonEquip.onClick.AddListener(() => InventoryManager.Instance.Equip((EquipmentItem)_item));
+                buttonEquip.onClick.AddListener(() => InventoryManager.Instance.Equip((EquippableItem)_item));
                 break;
             case Item.ItemGroup.Usable:
                 break;
@@ -44,7 +44,7 @@ public class ItemDetailPanel : MonoBehaviour
         }
     }
 
-    private void assignStatBonus(EquipmentItem equipItem)
+    private void assignStatBonus(EquippableItem equipItem)
     {
         Transform transform = statBonusLayout.transform;
         for (int i = 0; i <= transform.childCount; i++)

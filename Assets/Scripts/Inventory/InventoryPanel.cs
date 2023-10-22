@@ -6,8 +6,8 @@ public class InventoryPanel : MonoBehaviour
 {
 
     private void OnEnable() {
-        GameEvents.Instance.InventoryOpenEvent.Subscribe(visibleObject);
-        GameEvents.Instance.InventoryCloseEvent.Subscribe(unVisibleObject);
+        // GameEvents.Instance.InventoryOpenEvent.Subscribe(visibleObject);
+        // GameEvents.Instance.InventoryCloseEvent.Subscribe(unVisibleObject);
     }
 
     // Update is called once per frame

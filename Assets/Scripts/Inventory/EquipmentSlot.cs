@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour
 {
-    public EquipmentItem equipItem;
-    public Item.ItemType ItemType;
+    public EquippableItem equipItem;
+    public EquipmentType EquipmentType;
     [SerializeField] Sprite defaultIcon;
 
     private void Start()

@@ -1,13 +1,10 @@
 ﻿
 public interface IItemContainer
 {
-	bool CanAddItem(Item item, int amount = 1);
-	bool AddItem(Item item);
-
-	Item RemoveItem(string itemID);
-	bool RemoveItem(Item item);
-
-	void Clear();
-
-	int ItemCount(string itemID);
+	public bool CanAddItem(Item _item, int _amount = 1);
+	public void AddItem(Item _item, int _amount = 1);
+	public bool RemoveItem(Item _item, int _amount = 1);
+    public ItemStack GetItem(Item _item);
+	public int ItemCount(Item _item);
+	//void Clear();
 }

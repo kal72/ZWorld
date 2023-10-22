@@ -9,17 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0256869feac1a8448bf51b2a9c0ad3e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 14a12a2cea031412c99b73d0722b5ac5, type: 3}
   m_Name: Sword 1
   m_EditorClassIdentifier: 
-  Id: 1
+  id: c70488ed5b5829b40bfa8e1c52e1cd46
   Name: Zeloeman Sword 1
   Description: Pedang yang terbuat dari material Zeloeman yang bisa memunculkan aura
     gelap
   Icon: {fileID: 21300000, guid: c30c00f1dd7f6304d82887391e9dd5ee, type: 3}
   IsStackable: 0
-  itemType: 1
   itemGroup: 1
+  MaximumStacks: 1
+  EquipmentType: 0
   ATKBonus: 200
   DEFBonus: 0
   ManaBonus: 0
