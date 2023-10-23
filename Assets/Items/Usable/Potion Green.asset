@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdd2d0d9a58640bb93f4187289263a7, type: 3}
+  m_Name: Potion Green
+  m_EditorClassIdentifier: 
+  id: 8758e742f5acf483294d50b7484725d6
+  Name: Potion Green
+  Description: For speed increase
+  Icon: {fileID: 0}
+  IsStackable: 1
+  itemGroup: 0
+  MaximumStacks: 999
+  IsConsumable: 1
+  Effects:
+  - {fileID: 11400000, guid: 2b5a534c5e87f40b887b716341cb3c65, type: 2}

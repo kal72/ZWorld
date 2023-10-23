@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 #endif
 
-public abstract class Item : ScriptableObject
+public class Item : ScriptableObject
 {
     [SerializeField] string id;
 	public string ID { get { return id; } }
@@ -33,15 +33,20 @@ public abstract class Item : ScriptableObject
 		string path = AssetDatabase.GetAssetPath(this);
 		id = AssetDatabase.AssetPathToGUID(path);
 	}
-	#endif
+    #endif
 
-    public abstract Item GetCopy();
+    public virtual Item GetCopy()
+    {
+        return this;
+    }
 
-	public abstract void Destroy();
+    public virtual void Destroy(){}
 
-	public abstract string GetDescription();
+	public virtual string GetDescription(){
+        return "";
+    }
 
     public virtual string GetItemType(){
-        return "";
+        return itemGroup.ToString();
     }
 }

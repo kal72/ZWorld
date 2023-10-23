@@ -8,13 +8,11 @@ public class EventAction : ScriptableObject
 
     public void Subscribe(Action action)
     {
-        Debug.Log("subscribe");
         onSubscribeEvent += action;
     }
 
     public void Unsubscribe(Action action)
     {
-        Debug.Log("unsubscribe");
         onSubscribeEvent -= action;
     }
 
