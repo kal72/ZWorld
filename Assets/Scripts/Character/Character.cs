@@ -5,7 +5,14 @@ public class Character : MonoBehaviour
 {
 
     public static Character Instance;
-    public int HealthPoint;
+
+    [Header("Ability")]
+    [SerializeField] private int healthPoint;
+    public int HealthPoint
+    {
+        get { return healthPoint; }
+        set { healthPoint = value; HealthChangeEvent.Publish(healthPoint); }
+    }
     public int ManaPoint;
     public int StaminaPoint;
     public float CritDamage;
@@ -17,6 +24,9 @@ public class Character : MonoBehaviour
     public CharacterStat Defense;
     public CharacterStat ElementalResistance;
     public CharacterStat Speed;
+
+    [Header("Event Channel")]
+    public GameEvent<int> HealthChangeEvent;
 
     void Awake() {
         if (Instance == null) {

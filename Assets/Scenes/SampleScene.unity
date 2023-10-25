@@ -7193,6 +7193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c157725376d5f054baf68f933cba802f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoint: 100
+  ManaPoint: 50
+  StaminaPoint: 100
   CritDamage: 0
   CritRate: 0
   MaxHealth:
@@ -7209,6 +7212,7 @@ MonoBehaviour:
     BaseValue: 0
   Speed:
     BaseValue: 0
+  HealthChangeEvent: {fileID: 11400000, guid: c525737c7fdfe4d7284b225dbb741cf5, type: 2}
 --- !u!4 &738106267
 Transform:
   m_ObjectHideFlags: 0
@@ -7222,7 +7226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741918968
 GameObject:
@@ -14554,52 +14558,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735961670}
   m_CullTransparentMesh: 1
---- !u!1 &1753629397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1753629399}
-  - component: {fileID: 1753629398}
-  m_Layer: 0
-  m_Name: GameEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1753629398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753629397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4a6a937e5b82749b823c6a449ba7ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryOpenEvent: {fileID: 11400000, guid: a5370530d1fb4544cbddcd149f8f7fb9, type: 2}
-  InventoryCloseEvent: {fileID: 11400000, guid: 4f3991849b7acc146aebc20f40a05ca1, type: 2}
---- !u!4 &1753629399
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753629397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 253.29413, y: 371.07004, z: -3.806277}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754276777
 GameObject:
   m_ObjectHideFlags: 0

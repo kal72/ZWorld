@@ -1,22 +1,23 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "EventAction", menuName = "GameEvents/EventAction")]
-public class EventAction : ScriptableObject
+public class VoidEventChannel : ScriptableObject
 {
-    private event Action onSubscribeEvent;
+    private UnityAction onSubscribeEvent;
 
-    public void Subscribe(Action action)
+    public void Subscribe(UnityAction action)
     {
         onSubscribeEvent += action;
     }
 
-    public void Unsubscribe(Action action)
+    public void Unsubscribe(UnityAction action)
     {
         onSubscribeEvent -= action;
     }
 
-    public void PublishEvent()
+    public void Publish()
     {
         onSubscribeEvent?.Invoke();
     }
