@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: bc1aeb63212b443459d178b40af3fd5d
   Name: Zeloeman Sword 2
+  ItemClasses: 2
   Description: Pedang yang terbuat dari material Zeloeman yang bisa memunculkan aura
     gelap
   Icon: {fileID: 21300000, guid: 4492285c58779474cb913f7a6c36e518, type: 3}

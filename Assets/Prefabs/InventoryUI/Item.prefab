@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 920162398479837509}
   - component: {fileID: 920162398479837508}
   - component: {fileID: 3987663464456898811}
+  - component: {fileID: 1111060079889196998}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -200,6 +201,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1111060079889196998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920162398479837510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531809920766c4fc790eb0ff98b7bc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 3645500019642885996}
+  amountText: {fileID: 6841310450607917651}
+  OnRightClickChannel: {fileID: 11400000, guid: 823a98fb3fcd842d39c87eba220ab3d4, type: 2}
+  OnEnterClickChannel: {fileID: 11400000, guid: 52505bbcbedbf4757b3d261293891832, type: 2}
+  OnExitClickChannel: {fileID: 11400000, guid: 5c32981bb3d4f4d60a8803385b97918f, type: 2}
+  Index: 0
+  OnBeginDragChannel: {fileID: 11400000, guid: fe79d0fb7945f4b03bf07600e077d151, type: 2}
+  OnDragChannel: {fileID: 11400000, guid: 085e710d30a5045ea8bd06ef3dc967bb, type: 2}
+  OnEndDragChannel: {fileID: 11400000, guid: 6b6be51293b55401c8a0b02c56e75515, type: 2}
 --- !u!1 &2886305214532911605
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +275,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2886305214532911605}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

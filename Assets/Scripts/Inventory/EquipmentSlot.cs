@@ -11,7 +11,7 @@ public class EquipmentSlot : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => InventoryManager.Instance.ShowItemInfo(equipItem));
+        GetComponent<Button>().onClick.AddListener(() => InventoryManager.Instance.ShowItemInfo(null));
     }
 
     public void RefreshUI()

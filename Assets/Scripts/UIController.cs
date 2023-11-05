@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     public GameObject MenuPanel;
     public GameObject InventoryPanel;
     public GameObject CraftingPanel;
+    public TransferInventoryPanel TransferInventoryPanel;
+    public ItemTooltip ItemTooltip;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     public void ToggleMenu(){
         MenuPanel.SetActive(!MenuPanel.activeSelf);
@@ -24,10 +35,18 @@ public class UIController : MonoBehaviour
 
     public void OpenCrafting(bool status){
         if(status){
-             ToggleMenu();
             CraftingPanel.SetActive(true);
+            if (MenuPanel.activeSelf)
+            {
+                ToggleMenu();
+            }
         }else{
             CraftingPanel.SetActive(false);
         }
+    }
+
+    public void ShowTransferInventory(bool status, IItemContainer otherContainer)
+    {
+        TransferInventoryPanel.Show(status, otherContainer);
     }
 }

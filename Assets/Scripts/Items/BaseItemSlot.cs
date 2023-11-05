@@ -9,15 +9,21 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	[SerializeField] protected Image image;
 	[SerializeField] protected TMP_Text amountText;
 
-	public event Action<BaseItemSlot> OnPointerEnterEvent;
-	public event Action<BaseItemSlot> OnPointerExitEvent;
-	public event Action<BaseItemSlot> OnRightClickEvent;
+	//public event Action<BaseItemSlot> OnPointerEnterEvent;
+	//public event Action<BaseItemSlot> OnPointerExitEvent;
+	//public event Action<BaseItemSlot> OnRightClickEvent;
+	[Header("Game Event Publishers")]
+	public BaseItemSlotEventChannel OnRightClickChannel;
+    public BaseItemSlotEventChannel OnEnterClickChannel;
+    public BaseItemSlotEventChannel OnExitClickChannel;
 
-	protected bool isPointerOver;
+
+    protected bool isPointerOver;
 
 	protected Color normalColor = Color.white;
 	protected Color disabledColor = new Color(1, 1, 1, 0);
 
+	public int Index;
 	protected Item _item;
 	public Item Item {
 		get { return _item; }
@@ -83,7 +89,8 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 	protected virtual void OnDisable()
 	{
-		if (isPointerOver) {
+		if (isPointerOver)
+		{
 			OnPointerExit(null);
 		}
 	}
@@ -92,8 +99,8 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	{
 		if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
 		{
-			if (OnRightClickEvent != null)
-				OnRightClickEvent(this);
+			if (OnRightClickChannel != null)
+				OnRightClickChannel.Publish(this);
 		}
 	}
 
@@ -101,15 +108,15 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	{
 		isPointerOver = true;
 
-		if (OnPointerEnterEvent != null)
-			OnPointerEnterEvent(this);
+		if (OnEnterClickChannel != null)
+            OnEnterClickChannel.Publish(this);
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		isPointerOver = false;
 
-		if (OnPointerExitEvent != null)
-			OnPointerExitEvent(this);
+		if (OnExitClickChannel != null)
+            OnExitClickChannel.Publish(this);
 	}
 }

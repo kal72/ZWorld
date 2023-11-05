@@ -19,7 +19,7 @@ public class StatBuffItemEffect : UsableItemEffect
 
     public override string GetDescription()
     {
-        return "Grants " + SpeedBuff + " Agility for " + Duration + " seconds.";
+        return "Grants " + SpeedBuff + " Speed for " + Duration + " seconds.";
     }
 
     private static IEnumerator RemoveBuff(Character character, StatModifier statModifier, float duration)

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "EventAction", menuName = "GameEvents/EventAction")]
+[CreateAssetMenu(fileName = "VoidEventChannel", menuName = "GameEvents/VoidEventChannel")]
 public class VoidEventChannel : ScriptableObject
 {
     private UnityAction onSubscribeEvent;

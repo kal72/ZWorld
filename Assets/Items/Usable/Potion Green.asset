@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 8758e742f5acf483294d50b7484725d6
   Name: Potion Green
+  ItemClasses: 1
   Description: For speed increase
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0ceb218e5092b4333b7aa2e6177122f3, type: 3}
   IsStackable: 1
   itemGroup: 0
   MaximumStacks: 999

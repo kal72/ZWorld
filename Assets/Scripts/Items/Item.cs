@@ -9,6 +9,7 @@ public class Item : ScriptableObject
     [SerializeField] string id;
 	public string ID { get { return id; } }
     public string Name;
+    public ItemClass ItemClasses;
     public string Description;
     public Sprite Icon;
     public bool IsStackable;
@@ -23,6 +24,15 @@ public class Item : ScriptableObject
         Equip,
         Material,
         Other
+    }
+
+    public enum ItemClass
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Legendary,
+        Unique
     }
 
     protected static readonly StringBuilder sb = new StringBuilder();
@@ -48,5 +58,23 @@ public class Item : ScriptableObject
 
     public virtual string GetItemType(){
         return itemGroup.ToString();
+    }
+
+    public string GetColor() {
+        switch (ItemClasses)
+        {
+            case ItemClass.Common:
+                return "#FFFFFF";
+            case ItemClass.Uncommon:
+                return "#008000";
+            case ItemClass.Rare:
+                return "#0044ff";
+            case ItemClass.Legendary:
+                return "#ffa500";
+            case ItemClass.Unique:
+                return "#FFD700";
+            default:
+                return "#FFFFFF";
+        }
     }
 }

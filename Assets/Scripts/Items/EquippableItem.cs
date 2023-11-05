@@ -45,7 +45,22 @@ public class EquippableItem : Item
 
     public override string GetDescription()
     {
-        return "";
+        sb.Length = 0;
+
+        AddStat(ATKBonus, "ATK");
+        AddStat(DEFBonus, "DEF");
+        AddStat(ManaPercentBonus, "Max Mana");
+        AddStat(HealthBonus, "Max HP");
+
+        AddStat(ATKBonus, "ATK", isPercent: true);
+        AddStat(DEFBonus, "DEF", isPercent: true);
+        AddStat(ManaPercentBonus, "Max Mana", isPercent: true);
+        AddStat(HealthBonus, "Max HP", isPercent: true);
+        AddStat(CritDamagePercentBonus, "Crit DMG", isPercent: true);
+        AddStat(CritRatePercentBonus, "Crit Rate", isPercent: true);
+        AddStat(ElementalResPercentBonus, "Elemental RES", isPercent: true);
+
+        return sb.ToString();
     }
 
     public override string GetItemType()
@@ -87,5 +102,29 @@ public class EquippableItem : Item
         c.MaxHealth.RemoveAllModifiersFromSource(this);
         c.CritDamage -= CritDamagePercentBonus;
         c.CritRate -= CritRatePercentBonus;
+    }
+
+    private void AddStat(float value, string statName, bool isPercent = false)
+    {
+        if (value != 0)
+        {
+            if (sb.Length > 0)
+                sb.AppendLine();
+
+            if (value > 0)
+                sb.Append("<color=yellow>+</color>");
+
+            if (isPercent)
+            {
+                sb.Append(string.Format("<color=yellow>{0}</color>", value));
+                sb.Append("<color=yellow>%</color> ");
+            }
+            else
+            {
+                sb.Append(string.Format("<color=yellow>{0}</color>", value));
+                sb.Append(" ");
+            }
+            sb.Append(statName);
+        }
     }
 }
