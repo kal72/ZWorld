@@ -11,9 +11,9 @@ public class EquipmentPanel : MonoBehaviour
         equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
     }
 
-    public bool AddItem(EquipmentItem _item, out EquipmentItem _previousItem){
+    public bool AddItem(EquippableItem _item, out EquippableItem _previousItem){
         for(int i=0;i<equipmentSlots.Length;i++){
-            if(equipmentSlots[i].ItemType == _item.itemType){
+            if(equipmentSlots[i].EquipmentType == _item.EquipmentType){
                 _previousItem = equipmentSlots[i].equipItem;
                 equipmentSlots[i].equipItem = _item;
                 equipmentSlots[i].RefreshUI();
@@ -24,9 +24,9 @@ public class EquipmentPanel : MonoBehaviour
         return false;
     }
 
-     public bool RemoveItem(EquipmentItem _item){
+     public bool RemoveItem(EquippableItem _item){
         for(int i=0;i<equipmentSlots.Length;i++){
-            if(equipmentSlots[i].ItemType == _item.itemType){
+            if(equipmentSlots[i].EquipmentType == _item.EquipmentType){
                 equipmentSlots[i].equipItem = null;
                 equipmentSlots[i].RefreshUI();
                 return true;

@@ -8,7 +8,7 @@ public class ItemPickup : MonoBehaviour
     // Start is called before the first frame update
     void Pickup()
     {
-        InventoryManager.Instance.Add(Item);
+        InventoryManager.Instance.AddItem(Item);
         Destroy(gameObject);
     }
 

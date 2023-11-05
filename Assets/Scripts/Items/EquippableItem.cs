@@ -3,9 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using zw.CharacterStats;
 
+public enum EquipmentType
+    {
+        // Potion,
+        Weapon,
+        Shield,
+        Helmet,
+        Armor,
+        Accesories,
+        // Core,
+        // Material,
+        // Junk
+    }
+
 [CreateAssetMenu(fileName = "Equipment", menuName = "Item/Equipment")]
-public class EquipmentItem : Item
+public class EquippableItem : Item
 {
+    public EquipmentType EquipmentType;
     public int ATKBonus;
     public int DEFBonus;
     public int ManaBonus;
@@ -19,7 +33,27 @@ public class EquipmentItem : Item
     public float CritRatePercentBonus;
     public float ElementalResPercentBonus;
 
-    public override void Equip(Character c)
+    public override void Destroy()
+    {
+        Destroy(this);
+    }
+
+    public override Item GetCopy()
+    {
+        return Instantiate(this);
+    }
+
+    public override string GetDescription()
+    {
+        return "";
+    }
+
+    public override string GetItemType()
+    {
+        return EquipmentType.ToString();
+    }
+
+    public void Equip(Character c)
     {
         if (ATKBonus != 0)
             c.Attack.AddModifier(new StatModifier(ATKBonus, StatModType.Flat, this));
@@ -44,7 +78,8 @@ public class EquipmentItem : Item
             c.CritRate += CritRatePercentBonus;
 
     }
-    public override void Unequip(Character c)
+
+    public void Unequip(Character c)
     {
         c.Attack.RemoveAllModifiersFromSource(this);
         c.Defense.RemoveAllModifiersFromSource(this);
