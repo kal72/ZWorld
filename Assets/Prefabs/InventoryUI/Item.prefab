@@ -218,6 +218,7 @@ MonoBehaviour:
   OnRightClickChannel: {fileID: 11400000, guid: 823a98fb3fcd842d39c87eba220ab3d4, type: 2}
   OnEnterClickChannel: {fileID: 11400000, guid: 52505bbcbedbf4757b3d261293891832, type: 2}
   OnExitClickChannel: {fileID: 11400000, guid: 5c32981bb3d4f4d60a8803385b97918f, type: 2}
+  OnDoubleClickChannel: {fileID: 11400000, guid: 1c627e026d91940159c7aa347a6576e6, type: 2}
   Index: 0
   OnBeginDragChannel: {fileID: 11400000, guid: fe79d0fb7945f4b03bf07600e077d151, type: 2}
   OnDragChannel: {fileID: 11400000, guid: 085e710d30a5045ea8bd06ef3dc967bb, type: 2}

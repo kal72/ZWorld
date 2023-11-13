@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemSlot : BaseItemSlot, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class ItemSlot : BaseItemSlot, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
-    [Header("Game Events")]
+    [Header("Game Events (optional)")]
     public BaseItemSlotEventChannel OnBeginDragChannel;
     public BaseItemSlotEventChannel OnDragChannel;
     public BaseItemSlotEventChannel OnEndDragChannel;
 
     private Color dragColor = new Color(1, 1, 1, 0.5f);
 
-    Vector2 originalPosition;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //InventoryManager.Instance.ItemDragging = this;
@@ -27,11 +26,6 @@ public class ItemSlot : BaseItemSlot, IBeginDragHandler, IEndDragHandler, IDragH
         //image.transform.position = Input.mousePosition;
         //Debug.Log("on drag");
         OnDragChannel.Publish(this);
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("drop item");
     }
 
     public void OnEndDrag(PointerEventData eventData)

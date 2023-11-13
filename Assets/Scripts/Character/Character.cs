@@ -11,14 +11,14 @@ public class Character : MonoBehaviour
     public GameObject Player;
 
     [Header("Ability")]
-    [SerializeField] private int healthPoint;
-    public int HealthPoint
+    [SerializeField] private float healthPoint;
+    public float HealthPoint
     {
         get { return healthPoint; }
-        set { healthPoint = value; HealthChangeEvent.Publish(healthPoint); }
+        set { healthPoint = value; /* HealthChangeEvent.Publish(healthPoint); */ }
     }
-    public int ManaPoint;
-    public int StaminaPoint;
+    public float ManaPoint;
+    public float StaminaPoint;
     public float CritDamage;
     public float CritRate;
     public int MaxSummon;
@@ -31,7 +31,10 @@ public class Character : MonoBehaviour
     public CharacterStat Speed;
 
     [Header("Event Channel")]
-    public GameEvent<int> HealthChangeEvent;
+    public GameEvent<float> HealthChangeEvent;
+
+    [Header("List")]
+    [SerializeField] private List<GameObject> summonedMinions = new List<GameObject>();
 
     void Awake() {
         if (Instance == null) {
@@ -41,25 +44,35 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.P))
+        foreach (var minion in summonedMinions)
         {
-            SummonMinion();
+            if (minion == null)
+            {
+                summonedMinions.Remove(minion);
+            }
         }
     }
+
 
     public void UpdateStatValues()
     {
         //statPanel.UpdateStatValues();
     }
 
-    // cuman ngetest
-    public GameObject minionPrefab;
-    private List<GameObject> summonedMinions = new List<GameObject>();
+    public void TakeDamage(float _damage)
+    {
+        float result = HealthPoint - _damage;
+        HealthPoint = result <= 0f ? 0f : result; 
+    }
 
-    public void SummonMinion() {
-        Vector3 spawnPosition = Player.transform.position + Player.transform.forward * 2.0f; // Adjust the spawn position as needed.
-        GameObject summonedEnemy = Instantiate(minionPrefab, spawnPosition, Quaternion.identity);
-        summonedMinions.Add(summonedEnemy);
+    public float DealDamage()
+    {
+        return Attack.Value;
+    }
+
+    public void AddSummon(GameObject minion)
+    {
+        summonedMinions.Add(minion);
     }
 
     public void MinionLockTarget(Transform _target)
@@ -68,8 +81,8 @@ public class Character : MonoBehaviour
         {
             if (minion != null)
             {
-                var minionControl = minion.GetComponent<MinionController>();
-                minionControl.SetTarget(_target);
+                var minionControl = minion.GetComponent<MonsterController>();
+                minionControl.target = _target;
             }
         }
     }

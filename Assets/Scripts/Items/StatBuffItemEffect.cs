@@ -9,7 +9,7 @@ public class StatBuffItemEffect : UsableItemEffect
     public int SpeedBuff;
     public float Duration;
 
-    public override void ExecuteEffect(UsableItem parentItem, Character character)
+    public override void ExecuteEffect(Item parentItem, Character character)
     {
         StatModifier statModifier = new StatModifier(SpeedBuff, StatModType.Flat, parentItem);
         character.Speed.AddModifier(statModifier);

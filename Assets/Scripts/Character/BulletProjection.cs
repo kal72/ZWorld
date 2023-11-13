@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletProjection : MonoBehaviour
 {
-    public int Attack;
+    public float Attack;
 
     private void OnTriggerEnter(Collider other)
     {

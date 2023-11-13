@@ -6,7 +6,7 @@ public class HealItemEffect : UsableItemEffect
 {
     public int HealAmount;
 
-    public override void ExecuteEffect(UsableItem parentItem, Character character)
+    public override void ExecuteEffect(Item parentItem, Character character)
     {
         character.HealthPoint += HealAmount;
     }

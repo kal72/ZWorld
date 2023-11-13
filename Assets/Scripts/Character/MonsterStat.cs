@@ -3,11 +3,11 @@ using System.Collections;
 
 public class MonsterStat : MonoBehaviour
 {
-	public int HealhPoint;
-	public int MaxHealth;
-	public int Attack;
+	public float HealhPoint;
+	public float MaxHealth;
+	public float Attack;
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		Debug.Log("damage = "+damage);
 		HealhPoint -= damage;
@@ -15,6 +15,11 @@ public class MonsterStat : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	public float DealDamage()
+	{
+		return Attack;
 	}
 }
 

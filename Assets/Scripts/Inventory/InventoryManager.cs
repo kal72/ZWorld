@@ -13,12 +13,10 @@ public class InventoryManager : ItemContainer
     public GameObject ItemPrefab;
     public GameObject ItemDetail;
     public GameObject PouchPrefab;
-    public GameObject ObjItemSelected = null;
 
     public bool IsItemDrag;
 
-    public Item ExampleLog;
-    public Item ExampleOre;
+    public Item[] ExampleItems;
 
     private void Awake()
     {
@@ -31,13 +29,14 @@ public class InventoryManager : ItemContainer
     }
 
     private void initDummyData(){
-        AddItem(ExampleOre, 100);
-        AddItem(ExampleLog, 100);
+        for(int i=0; i<ExampleItems.Length; i++)
+        {
+            AddItem(ExampleItems[i], 50);
+        }
     }
 
     public void RefreshListUI()
     {
-        ObjItemSelected = null;
         foreach (Transform item in ItemContent)
         {
             Destroy(item.gameObject);
@@ -51,66 +50,9 @@ public class InventoryManager : ItemContainer
             baseItemSlot.Item = itemStack.Item;
             baseItemSlot.Amount = itemStack.Amount;
             baseItemSlot.Index = items.IndexOf(itemStack);
-
-            obj.GetComponent<Button>().onClick.AddListener(delegate { Debug.Log("Click"); });
-            Debug.Log("item");
-
-            //if (ObjItemSelected == null)
-            //{
-            //    SelectItem(itemStack, obj);
-            //}
         }
     }
 
-    public void SelectItem(ItemStack _itemStack, GameObject _obj)
-    {
-        Debug.Log("click");
-        if (ObjItemSelected != _obj)
-        {
-            if (ObjItemSelected != null)
-            {
-                ObjItemSelected.transform.Find("ItemSelected").gameObject.SetActive(false);
-            }
-            _obj.transform.Find("ItemSelected").gameObject.SetActive(true);
-            ObjItemSelected = _obj;
-        }
-    }
-
-    public void Equip(ItemStack _itemStack)
-    {
-        Debug.Log("Equip");
-
-        EquippableItem previousItem;
-        
-        if (_itemStack != null)
-        {
-            RemoveItem(_itemStack);
-            if (EquipmentPanel.AddItem((EquippableItem)_itemStack.Item, out previousItem))
-            {
-                if (previousItem != null)
-                {
-                    AddItem(previousItem);
-                }
-            }
-            else
-            {
-                AddItem(_itemStack.Item);
-            }
-
-            RefreshListUI();
-        }
-    }
-
-    public void Unequip(EquippableItem _item)
-    {
-        AddItem(_item);
-        RefreshListUI();
-    }
-
-    public void ShowItemInfo(ItemStack _item)
-    {
-        Debug.Log("ShowItemInfo");
-    }
 
     public void TransferToOther(BaseItemSlot itemSlot, IItemContainer itemContainer)
     {

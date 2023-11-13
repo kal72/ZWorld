@@ -1,28 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EquipmentSlot : MonoBehaviour
+public class EquipmentSlot : ItemSlot
 {
-    public EquippableItem equipItem;
-    public EquipmentType EquipmentType;
-    [SerializeField] Sprite defaultIcon;
+    public EquipmentType ItemType;
+    [SerializeField] Transform backImage;
 
-    private void Start()
+    protected override void OnValidate()
     {
-        GetComponent<Button>().onClick.AddListener(() => InventoryManager.Instance.ShowItemInfo(null));
+        base.OnValidate();
+
+        if (backImage == null)
+            backImage = transform.Find("Background");
     }
 
     public void RefreshUI()
     {
-        if (equipItem != null)
-        {
-            transform.Find("Icon").GetComponent<Image>().sprite = equipItem.Icon;
-        }
+        if (Item == null)
+            backImage.gameObject.SetActive(true);
         else
-        {
-             transform.Find("Icon").GetComponent<Image>().sprite = defaultIcon;
-        }
+            backImage.gameObject.SetActive(false);
     }
 }

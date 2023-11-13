@@ -9,13 +9,11 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	[SerializeField] protected Image image;
 	[SerializeField] protected TMP_Text amountText;
 
-	//public event Action<BaseItemSlot> OnPointerEnterEvent;
-	//public event Action<BaseItemSlot> OnPointerExitEvent;
-	//public event Action<BaseItemSlot> OnRightClickEvent;
-	[Header("Game Event Publishers")]
+	[Header("Game Events (optional)")]
 	public BaseItemSlotEventChannel OnRightClickChannel;
     public BaseItemSlotEventChannel OnEnterClickChannel;
     public BaseItemSlotEventChannel OnExitClickChannel;
+	public BaseItemSlotEventChannel OnDoubleClickChannel;
 
 
     protected bool isPointerOver;
@@ -34,6 +32,7 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 			if (_item == null) {
 				image.sprite = null;
 				image.color = disabledColor;
+				Amount = 0;
 			} else {
 				image.sprite = _item.Icon;
 				image.color = normalColor;
@@ -97,12 +96,22 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
+        //detect right click
+        if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
 		{
-			if (OnRightClickChannel != null)
+            Debug.Log("right click");
+            if (OnRightClickChannel != null)
 				OnRightClickChannel.Publish(this);
 		}
-	}
+
+		//detect double click
+		if (eventData != null && eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2)
+		{
+			Debug.Log("double click");
+			if (OnDoubleClickChannel != null)
+				OnDoubleClickChannel.Publish(this);
+		}
+    }
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
