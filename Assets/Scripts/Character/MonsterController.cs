@@ -7,6 +7,7 @@ public class MonsterController : MonoBehaviour, ICharacter
 {
     public NavMeshAgent agent;
     public Transform target;
+    public Transform player;
     public LayerMask whatIsGround, whatIsPlayer, whatIsEnemy;
     public Animator anim;
     private MonsterStat monsterStat;
@@ -40,6 +41,8 @@ public class MonsterController : MonoBehaviour, ICharacter
     {
         if (!isActivated) return;
 
+        if (IsMinion && target == null)
+            FollowPlayer();
         //Check for sight and attack range
         if (!IsMinion)
             targetInSightRange = detectTarget();
@@ -168,6 +171,14 @@ public class MonsterController : MonoBehaviour, ICharacter
 
         return false;
     }
+
+    public void FollowPlayer()
+    {
+        if (player != null)
+            agent.SetDestination(player.position);
+
+        runAnim();
+    }   
 
     public void TakeDamage(float _damage, GameObject _attacker)
     {

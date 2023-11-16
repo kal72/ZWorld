@@ -15,8 +15,9 @@ public class SummonItemEffect : UsableItemEffect
         var control = minionObj.GetComponent<MonsterController>();
         control.IsMinion = true;
         control.isActivated = true;
-        character.AddSummon(minionObj);
-        character.StartCoroutine(DestroyMinion(minionObj, Duration));
+        control.player = character.Player.transform;
+        character.AddSummon(control);
+        character.StartCoroutine(DestroyMinion(control, Duration, character));
     }
 
     public override string GetDescription()
@@ -24,9 +25,13 @@ public class SummonItemEffect : UsableItemEffect
         return "Summon " + MinionName + " for " + Duration + " seconds.";
     }
 
-    private static IEnumerator DestroyMinion(GameObject minionObj, float duration)
+    private static IEnumerator DestroyMinion(MonsterController minion, float duration, Character character)
     {
         yield return new WaitForSeconds(duration);
-        Destroy(minionObj);
+        if (minion != null)
+        {
+            character.RemoveSummon(minion);
+            Destroy(minion.gameObject);
+        }    
     }
 }

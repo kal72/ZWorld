@@ -34,25 +34,13 @@ public class Character : MonoBehaviour
     public GameEvent<float> HealthChangeEvent;
 
     [Header("List")]
-    [SerializeField] private List<GameObject> summonedMinions = new List<GameObject>();
+    [SerializeField] private List<MonsterController> summonedMinions = new List<MonsterController>();
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
         }
     }
-
-    private void Update()
-    {
-        foreach (var minion in summonedMinions)
-        {
-            if (minion == null)
-            {
-                summonedMinions.Remove(minion);
-            }
-        }
-    }
-
 
     public void UpdateStatValues()
     {
@@ -70,9 +58,14 @@ public class Character : MonoBehaviour
         return Attack.Value;
     }
 
-    public void AddSummon(GameObject minion)
+    public void AddSummon(MonsterController minion)
     {
         summonedMinions.Add(minion);
+    }
+
+    public void RemoveSummon(MonsterController minion)
+    {
+        summonedMinions.Remove(minion);
     }
 
     public void MinionLockTarget(Transform _target)
@@ -81,8 +74,7 @@ public class Character : MonoBehaviour
         {
             if (minion != null)
             {
-                var minionControl = minion.GetComponent<MonsterController>();
-                minionControl.target = _target;
+                minion.target = _target;
             }
         }
     }
